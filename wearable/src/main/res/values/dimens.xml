@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="analog_hand_stroke">4dp</dimen>
+    <dimen name="tick_hand_stroke">1dp</dimen>
+    <dimen name="radar_hand_stroke">0.5dp</dimen>
+</resources>

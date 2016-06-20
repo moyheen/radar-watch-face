@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RadarWatchface.iml" filepath="$PROJECT_DIR$/RadarWatchface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wearable/app.iml" filepath="$PROJECT_DIR$/wearable/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mobile/mobile.iml" filepath="$PROJECT_DIR$/mobile/mobile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mobile/radarwatchfaceapp.iml" filepath="$PROJECT_DIR$/mobile/radarwatchfaceapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wearable/wearable.iml" filepath="$PROJECT_DIR$/wearable/wearable.iml" />
+    </modules>
+  </component>
+</project>
