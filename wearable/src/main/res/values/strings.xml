@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">Radar</string>
+    <!-- Radar -->
+    <string name="radar_app_name">Radar</string>
     <string name="my_analog_name">Radar</string>
+
+    <!-- Andela -->
+    <string name="my_digital_name">Andela</string>
 </resources>

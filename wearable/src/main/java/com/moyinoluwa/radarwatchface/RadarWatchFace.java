@@ -27,9 +27,9 @@ import java.util.concurrent.TimeUnit;
  * Analog watch face with a ticking second hand. In ambient mode, the second hand isn't shown. On
  * devices with low-bit ambient mode, the hands are drawn without anti-aliasing in ambient mode.
  */
-public class MyWatchFace extends CanvasWatchFaceService {
+public class RadarWatchFace extends CanvasWatchFaceService {
 
-    private static final String TAG = "MyWatchFace";
+    private static final String TAG = "RadarWatchFace";
 
     /**
      * Update rate in milliseconds for interactive mode. We update once a second to advance the
@@ -48,15 +48,15 @@ public class MyWatchFace extends CanvasWatchFaceService {
     }
 
     private static class EngineHandler extends Handler {
-        private final WeakReference<MyWatchFace.Engine> mWeakReference;
+        private final WeakReference<RadarWatchFace.Engine> mWeakReference;
 
-        public EngineHandler(MyWatchFace.Engine reference) {
+        public EngineHandler(RadarWatchFace.Engine reference) {
             mWeakReference = new WeakReference<>(reference);
         }
 
         @Override
         public void handleMessage(Message msg) {
-            MyWatchFace.Engine engine = mWeakReference.get();
+            RadarWatchFace.Engine engine = mWeakReference.get();
             if (engine != null) {
                 switch (msg.what) {
                     case MSG_UPDATE_TIME:
@@ -118,7 +118,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
         public void onCreate(SurfaceHolder holder) {
             super.onCreate(holder);
 
-            setWatchFaceStyle(new WatchFaceStyle.Builder(MyWatchFace.this)
+            setWatchFaceStyle(new WatchFaceStyle.Builder(RadarWatchFace.this)
                     .setCardPeekMode(WatchFaceStyle.PEEK_MODE_SHORT)
                     .setBackgroundVisibility(WatchFaceStyle.BACKGROUND_VISIBILITY_INTERRUPTIVE)
                     .setShowSystemUiTime(false)
@@ -143,24 +143,24 @@ public class MyWatchFace extends CanvasWatchFaceService {
 
         private void initializeBackground() {
             mBackgroundPaint = new Paint();
-            mBackgroundPaint.setColor(ContextCompat.getColor(MyWatchFace.this, R.color.background));
+            mBackgroundPaint.setColor(ContextCompat.getColor(RadarWatchFace.this, R.color.radar_background_color));
         }
 
         private void initializeMinuteAndHourHand() {
-            Resources resources = MyWatchFace.this.getResources();
+            Resources resources = RadarWatchFace.this.getResources();
 
             mHourAndMinuteHandPaint = new Paint();
-            mHourAndMinuteHandPaint.setColor(ContextCompat.getColor(MyWatchFace.this, R.color.analog_hands));
+            mHourAndMinuteHandPaint.setColor(ContextCompat.getColor(RadarWatchFace.this, R.color.analog_hands));
             mHourAndMinuteHandPaint.setStrokeWidth(resources.getDimension(R.dimen.analog_hand_stroke));
             mHourAndMinuteHandPaint.setAntiAlias(true);
             mHourAndMinuteHandPaint.setStrokeCap(Paint.Cap.SQUARE);
         }
 
         private void initializeSecondHand() {
-            Resources resources = MyWatchFace.this.getResources();
+            Resources resources = RadarWatchFace.this.getResources();
 
             mSecondHandPaint = new Paint();
-            mSecondHandPaint.setColor(ContextCompat.getColor(MyWatchFace.this, R.color.analog_hands));
+            mSecondHandPaint.setColor(ContextCompat.getColor(RadarWatchFace.this, R.color.analog_hands));
             mSecondHandPaint.setStrokeWidth(resources.getDimension(R.dimen.tick_hand_stroke));
             mSecondHandPaint.setAntiAlias(true);
             mSecondHandPaint.setStrokeCap(Paint.Cap.SQUARE);
@@ -168,26 +168,26 @@ public class MyWatchFace extends CanvasWatchFaceService {
 
         private void initializeCenterCircle() {
             mCirclePaint = new Paint();
-            mCirclePaint.setColor(ContextCompat.getColor(MyWatchFace.this, R.color.analog_hands));
+            mCirclePaint.setColor(ContextCompat.getColor(RadarWatchFace.this, R.color.analog_hands));
             mCirclePaint.setAntiAlias(true);
         }
 
         private void initializeTickPaint() {
-            Resources resources = MyWatchFace.this.getResources();
+            Resources resources = RadarWatchFace.this.getResources();
 
             mTickPaint = new Paint();
-            mTickPaint.setColor(ContextCompat.getColor(MyWatchFace.this, R.color.tick_color));
+            mTickPaint.setColor(ContextCompat.getColor(RadarWatchFace.this, R.color.tick_color));
             mTickPaint.setStrokeWidth(resources.getDimension(R.dimen.tick_hand_stroke));
             mTickPaint.setAntiAlias(true);
         }
 
         private void initializeRadarTextPaint() {
-            Resources resources = MyWatchFace.this.getResources();
+            Resources resources = RadarWatchFace.this.getResources();
             Typeface radarTextTypeface = Typeface.createFromAsset(getAssets(), "fonts/NexaLight.ttf");
             float radarTextSize = 60;
 
             radarTextPaint = new Paint();
-            radarTextPaint.setColor(ContextCompat.getColor(MyWatchFace.this, R.color.radar_text_color));
+            radarTextPaint.setColor(ContextCompat.getColor(RadarWatchFace.this, R.color.radar_text_color));
             radarTextPaint.setStrokeWidth(resources.getDimension(R.dimen.radar_hand_stroke));
             radarTextPaint.setAntiAlias(true);
             radarTextPaint.setTextAlign(Paint.Align.LEFT);
@@ -196,12 +196,12 @@ public class MyWatchFace extends CanvasWatchFaceService {
         }
 
         private void initializeHourTextPaint() {
-            Resources resources = MyWatchFace.this.getResources();
+            Resources resources = RadarWatchFace.this.getResources();
             Typeface radarTextTypeface = Typeface.createFromAsset(getAssets(), "fonts/NexaLight.ttf");
             float hourTextSize = 20;
 
             hourTextPaint = new Paint();
-            hourTextPaint.setColor(ContextCompat.getColor(MyWatchFace.this, R.color.tick_color));
+            hourTextPaint.setColor(ContextCompat.getColor(RadarWatchFace.this, R.color.tick_color));
             hourTextPaint.setStrokeWidth(resources.getDimension(R.dimen.radar_hand_stroke));
             hourTextPaint.setAntiAlias(true);
             hourTextPaint.setTextAlign(Paint.Align.LEFT);
@@ -312,7 +312,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
             if (isInAmbientMode()) {
                 radarTextPaint.setColor(Color.WHITE);
             } else {
-                radarTextPaint.setColor(ContextCompat.getColor(MyWatchFace.this, R.color.radar_text_color));
+                radarTextPaint.setColor(ContextCompat.getColor(RadarWatchFace.this, R.color.radar_text_color));
             }
             canvas.drawText(radarText, mCenterX - 75f, mCenterY - 40f, radarTextPaint);
         }
@@ -424,7 +424,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
             }
             mRegisteredTimeZoneReceiver = true;
             IntentFilter filter = new IntentFilter(Intent.ACTION_TIMEZONE_CHANGED);
-            MyWatchFace.this.registerReceiver(mTimeZoneReceiver, filter);
+            RadarWatchFace.this.registerReceiver(mTimeZoneReceiver, filter);
         }
 
         private void unregisterReceiver() {
@@ -432,7 +432,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
                 return;
             }
             mRegisteredTimeZoneReceiver = false;
-            MyWatchFace.this.unregisterReceiver(mTimeZoneReceiver);
+            RadarWatchFace.this.unregisterReceiver(mTimeZoneReceiver);
         }
 
         /**
