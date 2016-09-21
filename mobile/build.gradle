@@ -10,7 +10,7 @@ android {
         }
     }
     compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+    buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.moyinoluwa.radarwatchface"
         minSdkVersion 16
@@ -33,6 +33,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.android.support:appcompat-v7:24.2.1'
     wearApp project(':wearable')
 }
