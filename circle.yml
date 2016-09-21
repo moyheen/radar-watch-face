@@ -1,0 +1,27 @@
+machine:
+   environment:
+     ANDROID_HOME: /usr/local/android-sdk-linux
+test:
+  override:
+    - ./gradlew assembleDebug
+
+  post:
+    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
+1
+2
+3
+4
+5
+6
+7
+8
+9
+machine:
+   environment:
+     ANDROID_HOME: /usr/local/android-sdk-linux
+test:
+  override:
+    - ./gradlew assembleDebug
+
+  post:
+    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
